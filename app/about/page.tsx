@@ -20,7 +20,9 @@ const About = () => {
     }, [headerState, navigate])
 
     return (
-        <Skeleton />
+        <div className='p-2'>
+            <Skeleton />
+        </div>
     )
 }
 

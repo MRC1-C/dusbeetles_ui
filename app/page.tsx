@@ -6,10 +6,12 @@ import { useEffect } from "react"
 
 export default function Home() {
   const navigate = useRouter()
-  useEffect(()=>{
+  useEffect(() => {
     navigate.push('/home')
-  },[])
+  }, [])
   return (
-    <Skeleton />
+    <div className="p-2">
+      <Skeleton />
+    </div>
   )
 }
