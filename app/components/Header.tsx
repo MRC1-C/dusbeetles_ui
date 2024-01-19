@@ -104,7 +104,7 @@ const Header = () => {
     // }, [])
     const navigate = useRouter()
     const [windowSize, setWindowSize] = useState({
-        width: typeof window !== 'undefined' ? window.innerWidth : 0,
+        width: typeof window !== 'undefined' ? window.innerWidth : 1280,
         height: typeof window !== 'undefined' ? window.innerHeight : 0,
     });
     const showDrawer = () => {
