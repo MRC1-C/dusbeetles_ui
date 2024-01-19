@@ -18,12 +18,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <StoreProvider>
-      <html lang="en">
-        <head>
+    <html lang="en">
+      <head>
         <link rel="icon" href="/logo.png" sizes="any" />
-        </head>
-        <body className={inter.className}>
+      </head>
+      <body className={inter.className}>
+        <StoreProvider>
           <div className='flex flex-col min-h-screen'>
             <Header />
             <div className='bg-gray-50 flex-auto'>
@@ -35,8 +35,8 @@ export default function RootLayout({
               <Footer />
             </div>
           </div>
-        </body>
-      </html>
-    </StoreProvider>
+        </StoreProvider>
+      </body>
+    </html>
   )
 }

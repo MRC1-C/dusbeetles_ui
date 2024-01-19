@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <>
       <div className='flex flex-wrap'>
-        {dataHome.map((dt: any) => <Items path={dt.name[0].name} type='V' key={dt._id} id={dt._id} name={dt?.name[language]?.name} url={dt.url} des={dt?.description[language]?.des} />)}
+        {dataHome.map((dt: any) => <Items path={dt.name[0].name} type='V' key={dt.id} id={dt.id} name={dt?.name[language]?.name} url={dt.url} des={dt?.description[language]?.des} />)}
       </div>
     </>
   )

@@ -11,12 +11,13 @@ const About = () => {
     const { headerState } = useSelector((state: RootState) => (state.appState));
 
     useEffect(() => {
-        try {
-            navigate.push("/about/"+headerState[0].name[0].name)
-        } catch (error) {
-            console.log(error)
+        if (headerState.length > 0) {
+            try {
+                navigate.push("/about/" + headerState[0].name[0].name)
+            } catch (error) {
+                console.log(error)
+            }
         }
-
     }, [headerState, navigate])
 
     return (

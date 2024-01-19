@@ -11,7 +11,7 @@ const ProductHome = () => {
   return (
     <>
       {
-        dataProductHome.map((dt: any) => <Items path={dt.name[0].name} type='V' key={dt.id.toString()} id={dt._id} des={dt.description[language].des} name={dt.name[language].name} url={dt.url} />)
+        dataProductHome.map((dt: any) => <Items path={dt.name[0].name} type='V' key={dt.id.toString()} id={dt.id} des={dt.description[language].des} name={dt.name[language].name} url={dt.url} />)
       }
     </>
   )
