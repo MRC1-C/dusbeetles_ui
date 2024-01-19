@@ -92,7 +92,7 @@ const Header = () => {
                     }
                 })
         }
-    }, [pathname, appState, dispatch])
+    }, [pathname, dispatch])
 
     // useEffect(() => {
     //     (async () => {
