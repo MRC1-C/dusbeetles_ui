@@ -150,9 +150,9 @@ const Header = () => {
                     </div>
                     <div className='flex flex-row gap-6 justify-between items-center'>
                         {
-                            windowSize.width > 1024 ? header.map(r => <Link href={r.path} key={r.path} className='no-underline font-semibold' style={{ color: appState == r.path ? 'white' : '#979797' }}>
+                            windowSize.width > 1024 ? header.map(r => <div onClick={()=> navigate.push(r.path)} key={r.path} className='no-underline font-semibold cursor-pointer' style={{ color: appState == r.path ? 'white' : '#979797' }}>
                                 {r.label && r.label[language]}
-                            </Link>) : null
+                            </div>) : null
                         }
                     </div>
                     <div className='flex flex-row items-center gap-3'>
@@ -181,7 +181,7 @@ const Header = () => {
                     <div className='container mx-auto flex flex-row md:gap-1 flex-wrap'>
                         {
                             headerState.map((dt: any) => (
-                                <Link key={dt.id} href={appState + '/' + dt.name[0].name} className='text-xs no-underline py-3 px-3' style={{ color: dt.name[0].name == currentHeader ? 'white' : '#979797' }}>{dt.name[language].name}</Link>
+                                <div key={dt.id} onClick={()=> navigate.push(appState + '/' + dt.name[0].name)} className='text-xs no-underline py-3 px-3 cursor-pointer' style={{ color: dt.name[0].name == currentHeader ? 'white' : '#979797' }}>{dt.name[language].name}</div>
 
                             ))
                         }
@@ -195,7 +195,7 @@ const Header = () => {
                         {
                             headerProductState.map((dt: any) => {
                                 return (
-                                    <Link key={dt.id} href={appState + '/' + currentHeader + '/' + dt.name[0].name} className='text-xs no-underline py-3 px-3' style={{ color: dt.name[0].name == currentHeaderProduct ? 'black' : '#979797' }}>{dt.name[language].name}</Link>
+                                    <div key={dt.id} onClick={()=> navigate.push(appState + '/' + currentHeader + '/' + dt.name[0].name)} className='text-xs no-underline py-3 px-3' style={{ color: dt.name[0].name == currentHeaderProduct ? 'black' : '#979797' }}>{dt.name[language].name}</div>
                                 )
                             })
                         }
