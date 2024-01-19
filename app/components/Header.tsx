@@ -88,7 +88,6 @@ const Header = () => {
                     }
                     else {
                         dispatch(setHeaderState([]))
-                        dispatch(setDataHome([]));
                         dispatch(setAppState(''))
                     }
                 })

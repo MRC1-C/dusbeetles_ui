@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react'
 import { RootState } from '../store';
 import { useSelector } from 'react-redux';
+import { Skeleton } from 'antd';
 
 
 const About = () => {
@@ -19,9 +20,7 @@ const About = () => {
     }, [headerState, navigate])
 
     return (
-        <div>
-            sdf
-        </div>
+        <Skeleton />
     )
 }
 

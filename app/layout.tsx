@@ -10,7 +10,9 @@ const inter = Quicksand({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Dusbeetles',
   description: 'Loa',
-  icons: '/logo.png'
+  icons: {
+    icon: '/icon.png'
+  }
 }
 
 export default function RootLayout({
@@ -21,6 +23,9 @@ export default function RootLayout({
   return (
     <StoreProvider>
       <html lang="en">
+        <head>
+          <link rel="icon" href={'/logo.png'} />
+        </head>
         <body className={inter.className}>
           <div className='flex flex-col min-h-screen'>
             <Header />
