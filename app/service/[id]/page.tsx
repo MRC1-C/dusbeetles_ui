@@ -27,7 +27,6 @@ const ProductHome = ({ params }: { params: { id: string } }) => {
                 .catch(err => console.log(err))
         }
     }, [headerState, currentHeader])
-    console.log(data)
     return (
         <div className='py-3 px-3 md:px-0'>
             {

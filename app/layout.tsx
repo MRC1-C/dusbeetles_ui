@@ -21,7 +21,7 @@ export default function RootLayout({
     <StoreProvider>
       <html lang="en">
         <head>
-          <link rel="icon" href="/logo.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/logo.png" sizes="any" />
         </head>
         <body className={inter.className}>
           <div className='flex flex-col min-h-screen'>

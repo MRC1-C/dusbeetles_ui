@@ -160,7 +160,7 @@ const Header = () => {
                         {
                             windowSize.width > 1024 ?
                                 <div className='w-28 flex justify-end items-center'>
-                                    <Select bordered={false} value={language == 0 ? "Tiếng việt" : "English"} onChange={(e) => {
+                                    <Select variant={'borderless'} value={language == 0 ? "Tiếng việt" : "English"} onChange={(e) => {
                                         dispatch(setLangauge(+e))
                                     }
                                     } options={[
@@ -248,7 +248,7 @@ const Header = () => {
                     <div className='flex-auto'></div>
                     <div className='text-white'>
                         <div className='w-28 flex justify-start pb-2'>
-                            <Select bordered={false} value={language == 0 ? "Tiếng việt" : "English"} onChange={(e) => {
+                            <Select variant={'borderless'} value={language == 0 ? "Tiếng việt" : "English"} onChange={(e) => {
                                 dispatch(setLangauge(+e))
                             }
                             } options={[
