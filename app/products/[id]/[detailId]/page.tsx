@@ -61,7 +61,7 @@ const ProductProductDeltail = ({ params }: { params: { detailId: string } }) => 
                                     <p>{data.condition}</p>
                                     <div className='flex flex-row'><p className='text-xs text-[#575757] font-semibold pr-1' >Size:</p> <p className='text-xs text-[#1C1F23] font-semibold'>{data.size}</p></div>
                                     <div className='flex flex-row'><p className='text-xs text-[#575757] font-semibold pr-1' >Weight:</p> <p className='text-xs text-[#1C1F23] font-semibold'>{data.weight}</p></div>
-                                    <p className='text-xl font-bold pt-2' style={{ borderTop: '1px solid lightgray' }}>{new Intl.NumberFormat('en-DE').format(data.price) + ' đ'}</p>
+                                    <p className='text-xl font-bold pt-2 text-red-600' style={{ borderTop: '1px solid lightgray' }}>{new Intl.NumberFormat('en-DE').format(data.price) + ' đ'}</p>
                                     <pre className='whitespace-pre-wrap'>{data.description[language].des}</pre>
                                 </div>
                             </div>
