@@ -15,7 +15,7 @@ const ProductProductDeltail = ({ params }: { params: { detailId: string } }) => 
         if (headerProductState.length > 0) {
             const dt = headerProductState.filter((dt: any) => {
                 if (dt) {
-                    return dt.name[0].name == detailId
+                    return dt.name[0].name == decodeURIComponent(detailId)
                 }
                 return false
             })

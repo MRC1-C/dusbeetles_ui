@@ -18,7 +18,7 @@ const ProductDetail = ({ params }: { params: { detailId: string } }) => {
         if (headerProductState.length > 0) {
             const dt = headerProductState.filter((dt: any) => {
                 if (dt) {
-                    return dt.name[0].name == detailId
+                    return dt.name[0].name == decodeURIComponent(detailId)
                 }
                 return false
             })
@@ -27,6 +27,7 @@ const ProductDetail = ({ params }: { params: { detailId: string } }) => {
                     id: dt[0].id
                 })
                 .then(d => setData(d.data))
+                .catch(err => console.log(err))
             }
         }
     }, [headerProductState, detailId])
@@ -40,16 +41,16 @@ const ProductDetail = ({ params }: { params: { detailId: string } }) => {
                         <pre className='pb-8 whitespace-pre-wrap'>{data.description[language].des}</pre>
                         {
                             data.images.map((img: any, index: any) => <div key={index}>
-                                <pre className='text-2xl font-semibold'>{img.name[language].name}</pre>
+                                <pre className='text-2xl font-semibold'>{img?.name[language]?.name}</pre>
                                 <div className='w-full'>
                                     {
-                                        img.url && <img alt='image' className={'py-8 w-full ' + (img.description[language].des.split('\n')[0] == "$T" ? 'md:w-1/3 object-contain' : 'md:w-full object-cover')} src={img.url} ></img>
+                                        img.url && <img alt='image' className={'py-8 w-full ' + (img?.description[language]?.des.split('\n')[0] == "$T" ? 'md:w-1/3 object-contain' : 'md:w-full object-cover')} src={img?.url} ></img>
                                     }
                                 </div>
                                 {
-                                    img.description[language].des.split('\n')[0] == "$T" ?
+                                    img?.description[language]?.des.split('\n')[0] == "$T" ?
                                         <StringTable data={img.description[language].des.slice(3,)} />
-                                        : <pre className='whitespace-pre-wrap'>{img.description[language].des}</pre>
+                                        : <pre className='whitespace-pre-wrap'>{img?.description[language]?.des}</pre>
                                 }
                             </div>)
                         }

@@ -26,8 +26,8 @@ export default function RootLayout({
         <StoreProvider>
           <div className='flex flex-col min-h-screen'>
             <Header />
-            <div className='bg-gray-50 flex-auto'>
-              <div className='container mx-auto'>
+            <div className='bg-gray-50 flex-auto min-h-screen'>
+              <div className='container mx-auto min-h-screen'>
                 {children}
               </div>
             </div>

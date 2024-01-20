@@ -22,9 +22,9 @@ const Footer = () => {
           <div className='col-span-1 flex flex-col md:items-center'>
             <div className='flex flex-col gap-4'>
               {
-                header.map(r => <Link href={r.path} key={r.path} className='no-underline font-semibold' style={{ color: appState == r.path ? 'white' : '#979797' }}>
+                header.map(r => <div onClick={()=> navigate.push(r.path)} key={r.path} className='no-underline font-semibold cursor-pointer' style={{ color: appState == r.path ? 'white' : '#979797' }}>
                   {r.label && r.label[language]}
-                </Link>)
+                </div>)
               }
             </div>
           </div>

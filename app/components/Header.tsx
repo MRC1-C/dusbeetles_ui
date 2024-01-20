@@ -72,7 +72,7 @@ const Header = () => {
                                         dispatch(setHeaderProductState(dt_.data.map((dt: any) => ({ name: dt.name, id: dt.id }))))
                                         dispatch(setCurrentHeaderState(decodeURIComponent(path_[2])))
                                         if (path_[3]) {
-                                            dispatch(setCurrentHeaderProductState(path_[3]))
+                                            dispatch(setCurrentHeaderProductState(decodeURIComponent(path_[3])))
                                         }
                                         else {
                                             dispatch(setCurrentHeaderProductState(''))
@@ -94,14 +94,15 @@ const Header = () => {
         }
     }, [pathname, dispatch])
 
-    // useEffect(() => {
-    //     (async () => {
-    //         const _data: Array<any> = await postRequest('/products/search', {
-    //             query: ""
-    //         })
-    //         setDataSearch(_data.slice(0, 5))
-    //     })()
-    // }, [])
+    useEffect(() => {
+        (async () => {
+            const _data = await axios.post('/api/product/search', {
+                query: "",
+                take: 5,
+            })
+            setDataSearch(_data.data)
+        })()
+    }, [])
     const navigate = useRouter()
     const [windowSize, setWindowSize] = useState({
         width: typeof window !== 'undefined' ? window.innerWidth : 1280,
@@ -150,7 +151,7 @@ const Header = () => {
                     </div>
                     <div className='flex flex-row gap-6 justify-between items-center'>
                         {
-                            windowSize.width > 1024 ? header.map(r => <div onClick={()=> navigate.push(r.path)} key={r.path} className='no-underline font-semibold cursor-pointer' style={{ color: appState == r.path ? 'white' : '#979797' }}>
+                            windowSize.width > 1024 ? header.map(r => <div onClick={() => navigate.push(r.path)} key={r.path} className='no-underline font-semibold cursor-pointer' style={{ color: appState == r.path ? 'white' : '#979797' }}>
                                 {r.label && r.label[language]}
                             </div>) : null
                         }
@@ -181,7 +182,7 @@ const Header = () => {
                     <div className='container mx-auto flex flex-row md:gap-1 flex-wrap'>
                         {
                             headerState.map((dt: any) => (
-                                <div key={dt.id} onClick={()=> navigate.push(appState + '/' + dt.name[0].name)} className='text-xs no-underline py-3 px-3 cursor-pointer' style={{ color: dt.name[0].name == currentHeader ? 'white' : '#979797' }}>{dt.name[language].name}</div>
+                                <div key={dt.id} onClick={() => navigate.push(appState + '/' + dt.name[0].name)} className='text-xs no-underline py-3 px-3 cursor-pointer' style={{ color: dt.name[0].name == currentHeader ? 'white' : '#979797' }}>{dt.name[language].name}</div>
 
                             ))
                         }
@@ -195,7 +196,7 @@ const Header = () => {
                         {
                             headerProductState.map((dt: any) => {
                                 return (
-                                    <div key={dt.id} onClick={()=> navigate.push(appState + '/' + currentHeader + '/' + dt.name[0].name)} className='text-xs no-underline py-3 px-3' style={{ color: dt.name[0].name == currentHeaderProduct ? 'black' : '#979797' }}>{dt.name[language].name}</div>
+                                    <div key={dt.id} onClick={() => navigate.push(appState + '/' + currentHeader + '/' + dt.name[0].name)} className='text-xs no-underline py-3 px-3 cursor-pointer' style={{ color: dt.name[0].name == currentHeaderProduct ? 'black' : '#979797' }}>{dt.name[language].name}</div>
                                 )
                             })
                         }
@@ -218,13 +219,13 @@ const Header = () => {
                             navigate.push('/find?q=' + value);
                             onClose();
                             setSearchValue('');
-                        }} /> <CloseCircleOutlined className='text-white text-2xl pt-2 cursor-pointer' onClick={() => onClose()} />
+                        }} /> <CloseCircleOutlined className='text-white text-2xl cursor-pointer' onClick={() => onClose()} />
                 </div>
                 <div className='container mx-auto'>
                     <div className='text-white py-2 font-semibold text-lg'> {language == 0 ? 'Sản phẩm mới' : 'New Products'}</div>
                     {
                         dataSearch.map((dt, index) => <div key={index} className='text-white py-2 cursor-pointer px-1 rounded hover:bg-slate-900' onClick={() => {
-                            navigate.push(dt.path);
+                            navigate.push("/" + dt.path + '/' + dt.name[0].name);
                             onClose();
                         }}>{dt.name[language].name}</div>)
                     }
@@ -240,9 +241,9 @@ const Header = () => {
                 <div className='flex flex-col min-h-[100%]'>
                     <div className='flex flex-col gap-3'>
                         {
-                            header.map(r => <Link onClick={() => onCloseMenu()} href={r.path} key={r.path} className='no-underline text-2xl font-semibold' style={{ color: appState == r.path ? 'white' : '#979797' }}>
+                            header.map(r => <div onClick={() => {navigate.push(r.path), onCloseMenu()}} key={r.path} className='no-underline text-2xl font-semibold' style={{ color: appState == r.path ? 'white' : '#979797' }}>
                                 {r.label && r.label[language as number]}
-                            </Link>)
+                            </div>)
                         }
                     </div>
                     <div className='flex-auto'></div>

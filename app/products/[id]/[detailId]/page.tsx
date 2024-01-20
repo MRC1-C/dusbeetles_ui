@@ -15,7 +15,7 @@ const ProductProductDeltail = ({ params }: { params: { detailId: string } }) => 
         if (headerProductState.length > 0) {
             const dt = headerProductState.filter((dt: any) => {
                 if (dt) {
-                    return dt.name[0].name == detailId
+                    return dt.name[0].name == decodeURIComponent(detailId)
                 }
                 return false
             })
@@ -59,8 +59,12 @@ const ProductProductDeltail = ({ params }: { params: { detailId: string } }) => 
                                     <p className='text-lg text-[#1C1F23] font-semibold'>{headerState.find(h => h.name[0].name == currentHeader)?.name[language].name}</p>
                                     <p className='text-3xl font-bold'>{data.name[language].name}</p>
                                     <p>{data.condition}</p>
-                                    <div className='flex flex-row'><p className='text-xs text-[#575757] font-semibold pr-1' >Size:</p> <p className='text-xs text-[#1C1F23] font-semibold'>{data.size}</p></div>
-                                    <div className='flex flex-row'><p className='text-xs text-[#575757] font-semibold pr-1' >Weight:</p> <p className='text-xs text-[#1C1F23] font-semibold'>{data.weight}</p></div>
+                                    {
+                                        data.size && <div className='flex flex-row'><p className='text-xs text-[#575757] font-semibold pr-1' >Size:</p> <p className='text-xs text-[#1C1F23] font-semibold'>{data.size}</p></div>
+                                    }
+                                    {
+                                        data.weight && <div className='flex flex-row'><p className='text-xs text-[#575757] font-semibold pr-1' >Weight:</p> <p className='text-xs text-[#1C1F23] font-semibold'>{data.weight}</p></div>
+                                    }
                                     <p className='text-xl font-bold pt-2 text-red-600' style={{ borderTop: '1px solid lightgray' }}>{new Intl.NumberFormat('en-DE').format(data.price) + ' đ'}</p>
                                     <pre className='whitespace-pre-wrap'>{data.description[language].des}</pre>
                                 </div>

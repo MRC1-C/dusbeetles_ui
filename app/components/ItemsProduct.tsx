@@ -8,21 +8,23 @@ export type PropsItems = {
     type?: string,
     price?: string,
     path: string,
+    search?: string
 }
 
 const ItemsProduct = (props: PropsItems) => {
     const navigate = useRouter();
     const pathname = usePathname()
-
     return (
-        <div onClick={() => navigate.push(pathname + "/" + props.path)} className={`w-full cursor-pointer`}>
-            <div className={'p-3 md:p-6 bg-white grid grid-cols-1 ' + (props.type == "H" ? 'md:grid-cols-1' : 'md:grid-cols-2').toString()}>
+        <div onClick={() => navigate.push((!props.search ? pathname : "/" + props.search) + "/" + props.path)} className={`w-full cursor-pointer`}>
+            <div className={'p-3 md:p-6 bg-white grid grid-cols-1 rounded-lg ' + (props.type == "H" ? 'md:grid-cols-1' : 'md:grid-cols-2').toString()}>
                 <div className='col-span-1'>
-                    <img alt="image" src={props.url} className='object-cover aspect-video w-full h-full rounded-xl' />
+                    <img alt="image" src={props.url} className='object-contain aspect-video w-full h-full rounded-xl' />
                 </div>
                 <div className={'col-span-1 ' + (props.type == "H" ? '' : 'md:p-8').toString()}>
                     <div className='font-semibold text-xl py-2'>{props.name}</div>
-                    <div className='font-semibold'>{props.price && new Intl.NumberFormat('en-DE').format(Number(props.price))}</div>
+                    {
+                        Number(props.price) != 0 && <div className='font-semibold'>{props.price && new Intl.NumberFormat('en-DE').format(Number(props.price))}</div>
+                    }
                     <div>{props.des}</div>
                 </div>
             </div>

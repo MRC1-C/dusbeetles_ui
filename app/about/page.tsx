@@ -22,7 +22,6 @@ const About = () => {
 
     return (
         <div className='p-2'>
-            <Skeleton />
         </div>
     )
 }
