@@ -27,9 +27,9 @@ const Header = () => {
 
     useEffect(() => {
         const path_ = pathname.split('/')
-        if ("/" + path_[1] !== appState) {
-            dispatch(clearStateApp())
-        }
+        // if ("/" + path_[1] !== appState) {
+        //     dispatch(clearStateApp())
+        // }
         if (path_[1] !== '') {
             axios.post("/api/category", {
                 page: path_[1]
