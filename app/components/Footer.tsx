@@ -2,13 +2,33 @@
 import { useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { header } from '../constant/pageHeader'
 import Image from 'next/image'
 
 const Footer = () => {
   const { appState, language } = useSelector((state: RootState) => (state.appState));
   const navigate = useRouter()
+  const header = [
+    {
+        path: '/home',
+        label: ["Trang chủ", "Home"]
+    },
+    {
+        path: '/about',
+        label: ["Giới thiệu công ty", "About"]
+    },
+    {
+        path: '/products',
+        label: ["Sản phẩm", "Products"]
+    },
+    {
+        path: '/case',
+        label: ["Công trình tiêu biểu", "Case"]
+    },
+    {
+        path: '/service',
+        label: ["Các dịch vụ kĩ thuật", "Service"]
+    }
+]
   return (
     <div className='container mx-auto text-white'>
       <div className='flex flex-col justify-center'>

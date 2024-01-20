@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CloseCircleOutlined, CloseOutlined, MenuUnfoldOutlined, ShoppingCartOutlined } from '@ant-design/icons'
 import { RootState } from '../store'
 import { usePathname, useRouter } from 'next/navigation'
-import { header } from '../constant/pageHeader'
 import { clearStateApp, setAppState, setCurrentHeaderProductState, setCurrentHeaderState, setHeaderProductState, setHeaderState, setLangauge } from '../store/features/appStateSlice'
 import { setDataHome, setDataProductHome } from '../store/features/homeStateSlice'
 import axios from 'axios'
@@ -22,14 +21,36 @@ const Header = () => {
     const [opneMenu, setOpenMenu] = useState(false)
     const [dataSearch, setDataSearch] = useState<Array<any>>([] as Array<any>)
     const [searchValue, setSearchValue] = useState('');
+   const header = [
+        {
+            path: '/home',
+            label: ["Trang chủ", "Home"]
+        },
+        {
+            path: '/about',
+            label: ["Giới thiệu công ty", "About"]
+        },
+        {
+            path: '/products',
+            label: ["Sản phẩm", "Products"]
+        },
+        {
+            path: '/case',
+            label: ["Công trình tiêu biểu", "Case"]
+        },
+        {
+            path: '/service',
+            label: ["Các dịch vụ kĩ thuật", "Service"]
+        }
+    ]
     const dispatch = useDispatch()
     const pathname = usePathname()
 
     useEffect(() => {
         const path_ = pathname.split('/')
-        // if ("/" + path_[1] !== appState) {
-        //     dispatch(clearStateApp())
-        // }
+        if ("/" + path_[1] !== appState) {
+            dispatch(clearStateApp())
+        }
         if (path_[1] !== '') {
             axios.post("/api/category", {
                 page: path_[1]
@@ -105,7 +126,7 @@ const Header = () => {
     const navigate = useRouter()
     const [windowSize, setWindowSize] = useState({
         width: typeof window !== 'undefined' ? window.innerWidth : 1280,
-        height: typeof window !== 'undefined' ? window.innerHeight : 0,
+        height: typeof window !== 'undefined' ? window.innerHeight : 500,
     });
     const showDrawer = () => {
         setOpen(true);
@@ -151,7 +172,7 @@ const Header = () => {
                     <div className='flex flex-row gap-6 justify-between items-center'>
                         {
                             windowSize.width > 1024 ? header.map(r => <div onClick={() => navigate.push(r.path)} key={r.path} className='no-underline font-semibold cursor-pointer' style={{ color: appState == r.path ? 'white' : '#979797' }}>
-                                {r.label && r.label[language]}
+                                {r.label[language]}
                             </div>) : null
                         }
                     </div>
