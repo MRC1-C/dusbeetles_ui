@@ -42,10 +42,10 @@ model Product {
   condition   String?
   size        String?
   weight      String?
-  url         String
+  url         String?
   images      typeImage[]
   createdAt   DateTime    @default(now())
   category_id String
-  price       Int
+  price       Int?
   discounts   Float?
 }
