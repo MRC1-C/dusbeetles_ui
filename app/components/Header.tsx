@@ -20,8 +20,7 @@ const Header = () => {
     const [open, setOpen] = useState(false);
     const [opneMenu, setOpenMenu] = useState(false)
     const [dataSearch, setDataSearch] = useState<Array<any>>([] as Array<any>)
-    const [searchValue, setSearchValue] = useState('');
-   const header = [
+    const [header, _] = useState([
         {
             path: '/home',
             label: ["Trang chủ", "Home"]
@@ -42,7 +41,8 @@ const Header = () => {
             path: '/service',
             label: ["Các dịch vụ kĩ thuật", "Service"]
         }
-    ]
+    ])
+    const [searchValue, setSearchValue] = useState('');
     const dispatch = useDispatch()
     const pathname = usePathname()
 
