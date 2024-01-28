@@ -81,9 +81,9 @@ const ProductProductDeltail = ({ params }: { params: { detailId: string } }) => 
                                     key: id,
                                     children: <div>
                                         {
-                                            img.description[language].des.split('\n')[0] == "$T" ?
+                                            img.description[language]?.des && (img.description[language].des.split('\n')[0] == "$T" ?
                                                 <StringTable data={img.description[language].des.slice(3,)} />
-                                                : img.description[language].des && <pre className='whitespace-pre-wrap pb-3'>{img.description[language].des}</pre>
+                                                : img.description[language].des && <pre className='whitespace-pre-wrap pb-3'>{img.description[language].des}</pre>)
                                         }
                                         <Image alt="image" className='w-full' width={'100%'} src={img.url} loading='eager' preview={false} />
                                     </div>,
