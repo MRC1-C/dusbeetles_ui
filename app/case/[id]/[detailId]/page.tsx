@@ -38,14 +38,17 @@ const ProductProductDeltail = ({ params }: { params: { detailId: string } }) => 
                     <pre className='pb-8 whitespace-pre-wrap'>{data.description[language].des}</pre>
                     {
                         data.images.map((img: any, idx: any) => <div key={idx}>
-                            <pre className='text-2xl font-semibold'>{img.name[language].name}</pre>
+                            {
+                                img.name[language]?.name && <pre className='text-2xl font-semibold'>{img.name[language].name}</pre>
+
+                            }
                             {
                                 img.url && <Image alt="image" className='py-8' width={'100%'} src={img.url} preview={false}></Image>
                             }
                             {
-                                img.description[language].des.split('\n')[0] == "$T" ?
+                                img.description[language]?.des && (img.description[language].des.split('\n')[0] == "$T" ?
                                     <StringTable data={img.description[language].des.slice(3,)} />
-                                    : <pre className='whitespace-pre-wrap'>{img.description[language].des}</pre>
+                                    : <pre className='whitespace-pre-wrap'>{img.description[language].des}</pre>)
                             }
                         </div>)
                     }

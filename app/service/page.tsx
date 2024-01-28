@@ -10,7 +10,7 @@ const About = () => {
     const { dataServices } = useSelector((state: RootState) => (state.servicesState));
     const { language } = useSelector((state: RootState) => (state.appState));
     const pathname = usePathname()
-
+    
 
     return (
         <div className='grid grid-cols-1 p-4 cursor-pointer'>
