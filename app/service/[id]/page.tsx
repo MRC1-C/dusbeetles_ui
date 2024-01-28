@@ -30,7 +30,7 @@ const ProductHome = ({ params }: { params: { id: string } }) => {
     return (
         <div className='py-3 px-3 md:px-0'>
             {
-                data.id && <div>
+                data?.id && <div>
                     <div className='font-semibold'>{data.name[language].name}</div>
                     {
                         data.description[language].des.split('\n')[0] == "$T" ?
@@ -43,7 +43,7 @@ const ProductHome = ({ params }: { params: { id: string } }) => {
                         </div>
                     }
                     {
-                        params.id == "Lời phản hồi" ? <Feedback /> : null
+                        decodeURIComponent(params.id) == "Lời phản hồi" ? <Feedback /> : null
                     }
                 </div>
 
